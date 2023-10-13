@@ -1,0 +1,38 @@
+netty:
+  port: 6677
+  ip: 0.0.0.0
+  maxFrameSize: 10240
+  path: /ws
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/turbo_chat?useSSL=false
+    username: root
+    password: root
+  sql:
+    init:
+      schema-locations:
+        - classpath*:org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql
+        - classpath*:org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql
+        - classpath*:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+
+turbochat:
+  security:
+    oauth2:
+      resource-server:
+        # 共享 token 存储
+        shared-stored-token: true
+        # 支持匿名登陆的 url 列表
+        ignore-urls:
+          - /public/**
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id
+  mapper-locations: classpath*:mapper/**/*.xml

@@ -1,0 +1,8 @@
+server:
+  port: 5673
+
+spring:
+  application:
+    name: turbo-chat-server
+  profiles:
+    active: dev
